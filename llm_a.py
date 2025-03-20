@@ -1,9 +1,14 @@
 import requests
 
-url= ""
-token = ""
 
-def llm(query):
+# Modelli utilizzabili:
+# deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B (spesso occupato)
+# meta-llama/Llama-3.2-3B-Instruct
+
+url= ""
+token = "" # Inserire token personale per fare richiesta
+
+def llm(query, injection):
     parameters = {
         "max_new_tokens": 5000,
         "temperature": 0.01,
