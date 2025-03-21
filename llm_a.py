@@ -4,6 +4,7 @@ import requests
 # Modelli utilizzabili:
 # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B (spesso occupato)
 # meta-llama/Llama-3.2-3B-Instruct
+# prova a vedere anche mistral
 
 url= ""
 token = "" # Inserire token personale per fare richiesta
