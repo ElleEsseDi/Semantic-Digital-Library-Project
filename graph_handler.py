@@ -1,14 +1,26 @@
 import requests
-
-# Define the server URL and repository ID
-server_url = "http://localhost:7200" # url per collegamenti esterni: http://DESKTOP-2TOL1V5:7200/repositories/SemDigLib
-repo_id = "SemDigLib"
-
-# Define the SPARQL query
-query = """SELECT ?s ?p ?o WHERE { ?s ?p ?o . }"""
+import json
 
 
-def make_query(query):
+def make_query(query, entity, db_url, repo_id):
+    prefixes = """
+        prefix ns1: <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/>
+        prefix ns2: <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/number_of_matches_played/races/>
+        prefix ns3: <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/number_of_points/goals/>
+        prefix ns4: <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/number_of_draws/>
+        prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        """
+
+    query = prefixes + """
+        SELECT ?context
+        WHERE {
+            %s ns1:appears_in ?context
+            FILTER(isLiteral(?context))
+        }
+        """% entity
+    
+    endpoint = f"{db_url}/repositories/{repo_id}"
+
     # Set the headers
     headers = {
         'Accept': 'application/sparql-results+json',
@@ -16,23 +28,34 @@ def make_query(query):
     }
 
     # Send the query to the repository
-    response = requests.post(f"{server_url}/repositories/{repo_id}/query", data=query, headers=headers)
+    response = requests.post(endpoint, data=query, headers=headers)
 
     # Check if the operation was successful
     if response.status_code == 200:
         print("Query executed successfully.")
-        print(response.json())
+        data = json.loads(response.json())
+        contexts = [ context["value"] for context in data["results"]["bindings"] ]
+        return contexts
     else:
-        print("Failed to execute query.")
+        print(f"Failed to execute query: {response.status_code}")
+        print(response.text)
 
 
-def load_triples(file_path):
+def load_triples(file_path, db_url, repo_id):
     # Send the file to the repository
+    endpoint = f"{db_url}/repositories/{repo_id}/statements"
     with open(file_path, 'rb') as file:
-        response = requests.post(f"{server_url}/repositories/{repo_id}/statements", data=file, headers=headers)
+        triple = file.read()
+
+    headers = {
+        "Content-Type": "application/x-turtle"
+    }
+
+    response = requests.post(endpoint, headers=headers, data=triple)
 
     # Check if the operation was successful
     if response.status_code == 204:
         print("Data loaded successfully.")
     else:
-        print("Failed to load data.")
+        print(f"Failed to load data: {response.status_code}")
+        print(response.text)
