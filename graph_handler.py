@@ -57,13 +57,26 @@ class GraphHandler():
         return prompt_contexts
 
     def load_triples(self, file_path) -> None:
-        # Send the file to the repository
+        # mappatura estensioni file e valore corrispondete dell'header Content Type
+        formats = {
+            ".ttl":"application/x-turtle",
+            ".nt":"application/n-triples",
+            ".rdf":"application/rdf+xml",
+            ".jsonld":"application/ld+json",
+            ".n3":"text/rdf+n3",
+            ".trig":"application/x-trig",
+            ".trix":"application/trix",
+            ".nq":"application/n-quads",
+        }
         load_endpoint = self.basic_endpoint + "/statements"
         with open(file_path, 'rb') as file:
             triple = file.read()
 
+        # Questo passaggio serve a generalizzare l'inserimento del valore di Content Type
+        # di modo che sia valido per ogni tipo di formato di file che contiene le triple
+        file_ext = file_path[file_path.find("."):]
         headers = {
-            "Content-Type": "application/x-turtle"
+            f"Content-Type": {formats[file_ext]}
         }
 
         response = requests.post(load_endpoint, headers=headers, data=triple)
