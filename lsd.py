@@ -1,5 +1,4 @@
-from graph_handler import load_triples
-from graph_handler import search_contexts
+from graph_handler import GraphHandler
 from recognition import EL
 
 
@@ -14,8 +13,9 @@ user_prompt = input("Cosa stai cercando?\n")
 # Si riconoscono le entità contenute nella domanda
 entities = EL(user_prompt)
 
-# Si trovano i testi del knowledge-graph in base alle entità
-contexts = search_contexts(entities, graphdb_url, repostory_id)
+# Si trovano i testi del knowledge-graph in base alle entità usando un oggetto GraphHandler
+graphHandler = GraphHandler(graphdb_url, repostory_id)
+contexts = graphHandler.search_contexts(entities)
 
 # Si inseriscono domanda dell'utente e testi selezionati nel prompt dell'LLM
 
