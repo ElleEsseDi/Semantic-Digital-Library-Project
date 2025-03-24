@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 
 class GraphHandler():
@@ -74,7 +75,7 @@ class GraphHandler():
 
         # Questo passaggio serve a generalizzare l'inserimento del valore di Content Type
         # di modo che sia valido per ogni tipo di formato di file che contiene le triple
-        file_ext = file_path[file_path.find("."):]
+        root, file_ext = os.path.splitext(file_path)
         headers = {
             f"Content-Type": {formats[file_ext]}
         }
