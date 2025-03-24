@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def make_query(query, entity, db_url, repo_id):
+def make_query(entity, db_url, repo_id) -> list|None:
     prefixes = """
         prefix ns1: <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/>
         prefix ns2: <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/number_of_matches_played/races/>
@@ -14,7 +14,10 @@ def make_query(query, entity, db_url, repo_id):
     query = prefixes + """
         SELECT ?context
         WHERE {
-            %s ns1:appears_in ?context
+            ?s rdfs:label ?o
+            FILTER( regex(?o, "[\D\d]*%s[\D\d]*", "i"))
+
+            ?s ns1:appears_in ?context
             FILTER(isLiteral(?context))
         }
         """% entity
@@ -40,8 +43,14 @@ def make_query(query, entity, db_url, repo_id):
         print(f"Failed to execute query: {response.status_code}")
         print(response.text)
 
+def search_contexts(entities, db_url, repo_id) -> list:
+    prompt_contexts = []
+    for entity in entities:
+        entity_contexts = make_query(entity, db_url, repo_id)
+        prompt_contexts.extend(entity_contexts)
+    return prompt_contexts
 
-def load_triples(file_path, db_url, repo_id):
+def load_triples(file_path, db_url, repo_id) -> None:
     # Send the file to the repository
     endpoint = f"{db_url}/repositories/{repo_id}/statements"
     with open(file_path, 'rb') as file:
