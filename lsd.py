@@ -19,5 +19,6 @@ contexts = graphHandler.search_contexts(entities)
 
 # Si inseriscono domanda dell'utente e testi selezionati nel prompt dell'LLM
 
+
 # Si restituisce la risposta all'utente
 

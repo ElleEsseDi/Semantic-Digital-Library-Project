@@ -18,8 +18,16 @@ def llm(query, injection):
         "return_full_text": False
         }
     
-    prompt = """<|begin_of_text|><|start_header_id|>system<|end_header_id|>You are a helpful and smart assistant. You accurately provide answer to the provided user query.<|eot_id|><|start_header_id|>user<|end_header_id|> Here is the query: ```{query}```.
-        Provide precise and concise answer.<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
+    prompt = """DOCUMENT:
+            (document text)
+
+            QUESTION:
+            (users question)
+
+            INSTRUCTIONS:
+            Answer the users QUESTION using the DOCUMENT text above.
+            Keep your answer ground in the facts of the DOCUMENT.
+            If the DOCUMENT doesn't contain the facts to answer the QUESTION return {NONE}"""
     
     headers = {
         'Authorization': f'Bearer {token}',
