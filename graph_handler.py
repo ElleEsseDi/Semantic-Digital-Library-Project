@@ -83,7 +83,7 @@ class GraphHandler():
         response = requests.post(load_endpoint, headers=headers, data=triple)
 
         # Check if the operation was successful
-        if response.status_code == 204:
+        if response.status_code == 200:
             print("Data loaded successfully.")
         else:
             print(f"Failed to load data: {response.status_code}")
