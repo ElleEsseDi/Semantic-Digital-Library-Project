@@ -1,6 +1,7 @@
 from graph_handler import GraphHandler
 from recognition import EL
 
+# Library Search Dude
 
 # Prima di mandare la richiesta ricorda di attivare il database
 graphdb_url = "http://localhost:7200" # url per collegamenti esterni: http://DESKTOP-2TOL1V5:7200/repositories/SemDigLib
