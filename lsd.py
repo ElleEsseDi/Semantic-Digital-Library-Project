@@ -18,7 +18,6 @@ entities = EL(user_prompt)
 # Si trovano i testi del knowledge-graph in base alle entità usando un oggetto GraphHandler
 graphHandler = GraphHandler(graphdb_url, repostory_id)
 contexts = graphHandler.search_contexts(entities)
-
 # Si inseriscono domanda dell'utente e testi selezionati nel prompt dell'LLM
 
 

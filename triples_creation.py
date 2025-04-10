@@ -82,12 +82,14 @@ for ent in entities.keys():
         pred = f"{base_uri}/{r.sub(' ','_',i)}"
         obj = info[i]
         if type(info[i]) == str:
+            graph.add((rdf.URIRef(dictionary_of_objects[ent]), RDFS.label, rdf.Literal(ent)))
+
             if obj in types:
                 graph.add((rdf.URIRef(dictionary_of_objects[ent]),rdf.URIRef(pred),rdf.URIRef(base_uri+'/'+r.sub(' ','_',obj))))
 
             elif obj not in dictionary_of_objects.keys():
                 graph.add((rdf.URIRef(dictionary_of_objects[ent]),rdf.URIRef(pred),rdf.Literal(obj)))
-                graph.add((rdf.URIRef(dictionary_of_objects[ent]), RDFS.label, rdf.Literal(ent)))
+                graph.add((rdf.URIRef(dictionary_of_objects[obj]), RDFS.label, rdf.Literal(obj)))
 
             elif obj in dictionary_of_objects.keys():
                 graph.add((rdf.URIRef(dictionary_of_objects[ent]),rdf.URIRef(pred),rdf.URIRef(dictionary_of_objects[obj])))
@@ -99,4 +101,5 @@ for ent in entities.keys():
                 for t in info[i]:
                     graph.add((rdf.URIRef(dictionary_of_objects[ent]), RDF.type, rdf.URIRef(base_uri+'/'+r.sub(' ','_',t))))
 
-graph.serialize(destination="data1.ttl")
+
+graph.serialize(destination="data2.ttl")
