@@ -1,8 +1,10 @@
 import json
+import os
 from typing import Literal
 
 import ollama
 import requests
+from dotenv import load_dotenv
 
 
 # Modelli utilizzabili:
@@ -15,16 +17,14 @@ class LSDAgentInterface:
         self,
         mode: Literal["remote", "local"],
         model: str,
-        prompt: str,
-        settings: dict,
-        sys_prompt=None,
+        sys_prompt,
+        settings: dict | None = None,
         key: str | None = None,
-        endpoint: str | None = None,
+        endpoint: str | None = "https://openrouter.ai/api/v1/chat/completions",
     ):
 
         self.model = model
-        self.sys_p = sys_prompt
-        self.prompt = prompt
+        self.sys_prompt = sys_prompt
         self.settings = settings
 
         # Remote mode
@@ -49,12 +49,7 @@ class LSDAgentInterface:
                 self._check_ollama_reqs()
             ):  # checking that ollama is running locally and the model was downloaded (pulled)
                 self.client = ollama.Client()
-                if self.sys_p:  # setting system prompt if specified
-                    self.client.chat(
-                        model=self.model,
-                        messages=[{"role": "system", "content": self.sys_p}],
-                        options=self.settings,
-                    )
+
         self.mode = mode
 
     def _check_ollama_reqs(self):
@@ -71,46 +66,101 @@ class LSDAgentInterface:
             print("Ollama is not running. Please start Ollama service.")
             return False
 
-    def remote_call(self, query):
+    def remote_call(self, query, contexts):
 
         if self.mode != "remote":
             raise AttributeError(
                 "Instance was not set to be used in as a remote API interface"
             )
+        # TODO:String processing to get a valid prompt according to template (prompt.txt)
+        prompt = query + "\n" + "CONTEXTS\n", contexts
 
-        parameters = {
-            "max_new_tokens": 5000,
+        # TODO:Add fallback models in entry 'models'
+        payload = {
+            "model": self.model,  # deepseek/deepseek-r1:free? qwen/qwen3-235b-a22b:free or maybe Qwen/Qwen3-235B-A22B
+            "messages": [
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": query},
+            ],
+            "reasoning": {"exclude": True},
+            "max_tokens": 5000,
             "temperature": 0.01,
             "top_k": 50,
             "top_p": 0.95,
-            "return_full_text": False,
-        }  # TODO: usare settings passati all'oggetto invece di questi paramateri
+        }
 
-        prompt = self.prompt.replace("{query}", query)
+        # adding settings, if specified, to payload
+        if self.settings:
+            for k, v in self.settings.items():
+                payload[k] = v
 
-        payload = json.dumps(
-            {
-                "model": self.model,  # deepseek/deepseek-r1:free?
-                "messages": [{"role": "user", "content": prompt}],
-            }
+        response = requests.post(
+            self.endpoint, headers=self.headers, data=json.dumps(payload)
         )
+        response.raise_for_status()
 
-        response = requests.post(self.endpoint, headers=self.headers, data=payload)
-        response_text = response.json()[0]["generated_text"].strip()
+        api_response = response.json()
 
-        return response_text
+        if api_response.get("choices") and len(api_response["choices"]) > 0:
+            assistant_reply = api_response["choices"][0]["message"]["content"]
+            print("AI Response:")
+            print(assistant_reply)
+        else:
+            print("No response choices found.")
+            print("API Response:", api_response)
 
-    def local_call(self, query):
+        return assistant_reply
+
+    def local_call(self, query, contexts):
 
         if self.mode != "local":
             raise AttributeError(
                 "Instance was not set to be used in as a local API interface"
             )
 
-        prompt = self.prompt.format(QUERY=query)
-        response = self.client.generate(
-            model=self.model, prompt=prompt, options=self.settings
+        prompt = query + "\n\n" + contexts
+        response = self.client.chat(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": self.sys_prompt},
+                {"role": "user", "content": prompt},
+            ],
+            options=self.settings,
         )
         response_text = response["response"]
 
         return response_text
+
+    # TODO:Define function to format contexts before integrating them in user prompt
+    def format_context_info(self, contexts):
+        pass
+
+
+if __name__ == "__main__":
+
+    load_dotenv()  # loading .env file containing API key
+
+    # Getting prompt
+    with open("prompt.txt", mode="r", encoding="utf-8") as f:
+        sys_prompt = f.read()
+
+    # Getting API key
+    key = os.environ.get("API_KEY")
+    if key is None:
+        raise TypeError("key is None")
+
+    # Initalizing agent interface
+    agent = LSDAgentInterface(
+        mode="remote",
+        model="qwen/qwen3-235b-a22b:free",
+        sys_prompt=sys_prompt,
+        key=key,
+    )
+
+    agent.remote_call(
+        query="What is the capital of Italy?",
+        contexts="""The capital of Italy is Rome\n
+                    Rome was founded in 1922\n
+                    The pope resided in Rome and is gay\n
+                    Luigi Mangione should be freed""",
+    )
