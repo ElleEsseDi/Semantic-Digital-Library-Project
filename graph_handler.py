@@ -24,8 +24,7 @@ class GraphHandler():
                 ?s rdfs:label ?o
                 FILTER( regex(?o, "[\D\d]*%s[\D\d]*", "i"))
 
-                ?s ns1:appears_in ?context
-                FILTER(isLiteral(?context))
+                ?s ns1:appears_in / rdfs:label ?context
             }
             """% entity
         
