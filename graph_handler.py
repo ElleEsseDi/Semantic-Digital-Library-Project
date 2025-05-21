@@ -9,24 +9,25 @@ class GraphHandler():
         self.repo_id = repo_id
         self.basic_endpoint = f"{db_url}/repositories/{repo_id}"
 
-    def make_query(self, entity) -> list|None:
+    def make_query(self, entities:list) -> list|None:
+        entities_joint = "'"+"' '".join(entities)+"'"
+        
         prefixes = """
             prefix ns1: <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/>
-            prefix ns2: <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/number_of_matches_played/races/>
-            prefix ns3: <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/number_of_points/goals/>
-            prefix ns4: <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/number_of_draws/>
             prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
             """
 
         query = prefixes + """
             SELECT ?context
-            WHERE {
-                ?s rdfs:label ?o
-                FILTER( regex(?o, "[\D\d]*%s[\D\d]*", "i"))
+            WHERE {                
+                VALUES ?linked_ent { %s } 
 
-                ?s ns1:appears_in / rdfs:label ?context
+	            ?entity rdfs:label ?entityLabel;
+	                    ns1:appears_in / rdfs:label ?context . 
+
+	            FILTER(CONTAINS(LCASE(STR(?entityLabel)), LCASE(?linked_ent)))
             }
-            """% entity
+            """% entities_joint
         
         
 
@@ -42,19 +43,18 @@ class GraphHandler():
         # Check if the operation was successful
         if response.status_code == 200:
             print("Query executed successfully.")
-            data = json.loads(response.json())
-            contexts = [ context["value"] for context in data["results"]["bindings"] ]
+            data = response.json()
+            contexts = [ d["context"]["value"] for d in data["results"]["bindings"] ]
             return contexts
         else:
             print(f"Failed to execute query: {response.status_code}")
             print(response.text)
 
-    def search_contexts(self, entities) -> list:
+    def search_contexts(self, entities:list) -> list:
         prompt_contexts = []
-        for entity in entities:
-            entity_contexts = self.make_query(entity)
-            prompt_contexts.extend(entity_contexts)
-        return prompt_contexts
+        entity_contexts = self.make_query(entities)
+        #prompt_contexts.extend(entity_contexts)
+        return entity_contexts#prompt_contexts
 
     def load_triples(self, file_path) -> None:
         # mappatura estensioni file e valore corrispondete dell'header Content Type
