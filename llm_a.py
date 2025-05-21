@@ -7,10 +7,6 @@ import requests
 from dotenv import load_dotenv
 
 
-# Modelli utilizzabili:
-# deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B (spesso occupato)
-# meta-llama/Llama-3.2-3B-Instruct
-# prova a vedere anche mistral
 class LSDAgentInterface:
 
     def __init__(
@@ -73,11 +69,11 @@ class LSDAgentInterface:
                 "Instance was not set to be used in as a remote API interface"
             )
         # TODO:String processing to get a valid prompt according to template (prompt.txt)
-        prompt = query + "\n" + "CONTEXTS\n", contexts
+        prompt = self._format_context_info(query=query, contexts=contexts)
 
-        # TODO:Add fallback models in entry 'models'
+        # TODO:Add more fallback models in entry 'models'
         payload = {
-            "model": self.model,  # deepseek/deepseek-r1:free? qwen/qwen3-235b-a22b:free or maybe Qwen/Qwen3-235B-A22B
+            "model": self.model,  # main model
             "messages": [
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": query},
@@ -87,6 +83,11 @@ class LSDAgentInterface:
             "temperature": 0.01,
             "top_k": 50,
             "top_p": 0.95,
+            "models": [
+                "deepseek/deepseek-r1:free",
+                "google/gemma-3-27b-it:free",
+                "nvidia/llama-3.1-nemotron-ultra-253b-v1:free",
+            ],  # XXX: Fallback models
         }
 
         # adding settings, if specified, to payload
@@ -133,8 +134,16 @@ class LSDAgentInterface:
         return response_text
 
     # TODO:Define function to format contexts before integrating them in user prompt
-    def format_context_info(self, contexts):
-        pass
+    def _format_context_info(self, query, contexts):
+        return (
+            "**--- BEGIN USER QUERY ---**\n"
+            + query
+            + "--- END USER QUERY ---"
+            + "\n\n"
+            + "--- BEGIN RETRIEVED CONTEXTS ---\n"
+            + contexts
+            + "--- END RETRIEVED CONTEXTS ---"
+        )
 
 
 if __name__ == "__main__":
@@ -153,7 +162,7 @@ if __name__ == "__main__":
     # Initalizing agent interface
     agent = LSDAgentInterface(
         mode="remote",
-        model="qwen/qwen3-235b-a22b:free",
+        model="qwen/qwen3-235b-a22b:free",  # deepseek/deepseek-r1:free
         sys_prompt=sys_prompt,
         key=key,
     )
@@ -169,5 +178,3 @@ if __name__ == "__main__":
         url="https://openrouter.ai/api/v1/auth/key",
         headers={"Authorization": f"Bearer {key}"},
     )
-
-    print(json.dumps(response.json(), indent=2))
