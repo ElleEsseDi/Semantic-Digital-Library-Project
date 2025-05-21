@@ -141,7 +141,7 @@ class LSDAgentInterface:
             + "--- END USER QUERY ---"
             + "\n\n"
             + "--- BEGIN RETRIEVED CONTEXTS ---\n"
-            + contexts
+            + "\n".join(contexts)
             + "--- END RETRIEVED CONTEXTS ---"
         )
 
