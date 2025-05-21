@@ -102,14 +102,15 @@ class LSDAgentInterface:
         api_response = response.json()
 
         if api_response.get("choices") and len(api_response["choices"]) > 0:
-            assistant_reply = api_response["choices"][0]["message"]["content"]
+            agent_reply = api_response["choices"][0]["message"]["content"]
             print("AI Response:")
-            print(assistant_reply)
+            print(agent_reply)
         else:
+            agent_reply = None
             print("No response choices found.")
             print("API Response:", api_response)
 
-        return assistant_reply
+        return agent_reply
 
     def local_call(self, query, contexts):
 
@@ -164,3 +165,9 @@ if __name__ == "__main__":
                     The pope resided in Rome and is gay\n
                     Luigi Mangione should be freed""",
     )
+    response = requests.get(
+        url="https://openrouter.ai/api/v1/auth/key",
+        headers={"Authorization": f"Bearer {key}"},
+    )
+
+    print(json.dumps(response.json(), indent=2))
