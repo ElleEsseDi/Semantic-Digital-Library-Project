@@ -34,7 +34,7 @@ print(type(contexts))
 
 load_dotenv()  # loading .env file containing API key
 
-# Getting prompt
+# Getting prompt text
 with open("prompt.txt", mode="r", encoding="utf-8") as f:
     sys_prompt = f.read()
 
@@ -58,4 +58,6 @@ response = requests.get(
     headers={"Authorization": f"Bearer {key}"},
 )
 
-# Si restituisce la risposta all'utente
+local = LSDAgentInterface(mode="local", model="deepseek-r1:8b", sys_prompt=sys_prompt)
+
+local.local_call(query=user_prompt, contexts=contexts)

@@ -120,7 +120,7 @@ class LSDAgentInterface:
                 "Instance was not set to be used in as a local API interface"
             )
 
-        prompt = query + "\n\n" + contexts
+        prompt = self._format_context_info(query, contexts)
         response = self.client.chat(
             model=self.model,
             messages=[
@@ -129,7 +129,8 @@ class LSDAgentInterface:
             ],
             options=self.settings,
         )
-        response_text = response["response"]
+        response_text = response["message"]["content"]
+        print(response_text)
 
         return response_text
 
