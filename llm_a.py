@@ -78,7 +78,6 @@ class LSDAgentInterface:
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": query},
             ],
-            "reasoning": {"exclude": True},
             "max_tokens": 5000,
             "temperature": 0.01,
             "top_k": 50,
@@ -104,6 +103,10 @@ class LSDAgentInterface:
 
         if api_response.get("choices") and len(api_response["choices"]) > 0:
             agent_reply = api_response["choices"][0]["message"]["content"]
+            if "<think>" in agent_reply:
+                agent_reply = agent_reply.split("</think>")[
+                    1
+                ]  # getting only the response from reasoning models, cutting out the CoT
             print("AI Response:")
             print(agent_reply)
         else:
@@ -130,11 +133,14 @@ class LSDAgentInterface:
             options=self.settings,
         )
         response_text = response["message"]["content"]
+        if "<think>" in response_text:
+            response_text = response_text.split("</think>")[
+                1
+            ]  # getting only the response from reasoning models, cutting out the CoT
         print(response_text)
 
         return response_text
 
-    # TODO:Define function to format contexts before integrating them in user prompt
     def _format_context_info(self, query, contexts):
         return (
             "**--- BEGIN USER QUERY ---**\n"
@@ -172,8 +178,7 @@ if __name__ == "__main__":
         query="What is the capital of Italy?",
         contexts="""The capital of Italy is Rome\n
                     Rome was founded in 1922\n
-                    The pope resided in Rome and is gay\n
-                    Luigi Mangione should be freed""",
+                    The pope resides in Rome\n""",
     )
     response = requests.get(
         url="https://openrouter.ai/api/v1/auth/key",

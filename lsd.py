@@ -46,7 +46,7 @@ if key is None:
 # Initalizing agent interface
 agent = LSDAgentInterface(
     mode="remote",
-    model="qwen/qwen3-235b-a22b:free",  # deepseek/deepseek-r1:free
+    model="deepseek/deepseek-r1:free",  # deepseek/deepseek-r1:free qwen/qwen3-235b-a22b:free
     sys_prompt=sys_prompt,
     key=key,
 )
