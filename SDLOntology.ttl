@@ -1,0 +1,248 @@
+@prefix : <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/> .
+@prefix lsd: <https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:LibrarySystemDude a owl:Ontology .
+
+rdfs:label a owl:DatatypeProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range rdfs:Literal .
+
+:Amendments_to_the_Constitution_of_Ireland a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:FA_Cup_Final a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Olympic_delegation a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:United_States_Supreme_Court_decision a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Vuelta_a_España a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Wikipedia_controversy a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:World_Bowl a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:aircraft_crash a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:appears_in a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :NarrationContext .
+
+:Association_football_final a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Association_football_match a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Aviation_accident a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Aviation_incident a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Award_ceremony a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Context_narration a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Controversy a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Criticism a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Death a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Disappearance a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Election a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Exile a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Final a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Fire a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Inauguration a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Labour_movement a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Leadership_election a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Legal_case a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Murder_suicide a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Olympic_delegation a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Political_campaign a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Presidential_campaign a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Referendums_in_Ireland a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Rejected_takeoff a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Sports_festival a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Sports_season a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Suicide a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Tennis_event a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Theft a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:Vehicle_ramming_attack a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:NarrationContext a owl:Class ;
+    rdfs:subClassOf :EntityType .
+
+:votes_received a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:winner a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:time_gap a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:together_with a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:series_ordinal a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:sourcing_circumstances a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:ranking a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:point_in_time a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:number_of_wins a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:object_has_role a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:of a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:number_of_draws_ties a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:number_of_losses a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:number_of_matches_played_races_starts a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:number_of_points_goals_set_scored a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:number_of_wins a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:object_has_role a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:located_in_the_administrative_territorial_entity a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:location a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:match_time_of_event a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:member_of_political_party a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:member_of_sports_team a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:for_work a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:editor a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:country a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:award_received a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:aircraft_registration a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:appears_in a owl:ObjectProperty ;
+    rdfs:domain :Entity ;
+    rdfs:range :Entity .
+
+:Entity a owl:Class .
+
+:EntityType a owl:Class .
+
