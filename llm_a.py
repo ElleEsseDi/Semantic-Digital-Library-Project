@@ -66,17 +66,16 @@ class LSDAgentInterface:
 
         if self.mode != "remote":
             raise AttributeError(
-                "Instance was not set to be used in as a remote API interface"
+                "Instance was not set to be used as a remote API interface"
             )
-        # TODO:String processing to get a valid prompt according to template (prompt.txt)
-        prompt = self._format_context_info(query=query, contexts=contexts)
+        formatted_contexts = self._format_context_info(contexts=contexts)
 
-        # TODO:Add more fallback models in entry 'models'
         payload = {
             "model": self.model,  # main model
             "messages": [
-                {"role": "system", "content": prompt},
+                {"role": "system", "content": self.sys_prompt},
                 {"role": "user", "content": query},
+                {"role": "user", "content": formatted_contexts}
             ],
             "max_tokens": 5000,
             "temperature": 0.01,
@@ -123,12 +122,13 @@ class LSDAgentInterface:
                 "Instance was not set to be used in as a local API interface"
             )
 
-        prompt = self._format_context_info(query, contexts)
+        formatted_contexts = self._format_context_info(contexts)
         response = self.client.chat(
             model=self.model,
             messages=[
                 {"role": "system", "content": self.sys_prompt},
-                {"role": "user", "content": prompt},
+                {"role": "user", "content": query},
+                {"role": "user", "content": formatted_contexts},
             ],
             options=self.settings,
         )
@@ -141,14 +141,10 @@ class LSDAgentInterface:
 
         return response_text
 
-    def _format_context_info(self, query, contexts):
+    def _format_context_info(self, contexts):
         return (
-            "**--- BEGIN USER QUERY ---**\n"
-            + query
-            + "--- END USER QUERY ---"
-            + "\n\n"
-            + "--- BEGIN RETRIEVED CONTEXTS ---\n"
-            + "\n".join(contexts)
+            "--- BEGIN RETRIEVED CONTEXTS ---\n"
+            + "\n".join(contexts) if contexts else "***NO INFO***"
             + "--- END RETRIEVED CONTEXTS ---"
         )
 

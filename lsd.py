@@ -44,20 +44,21 @@ if key is None:
     raise TypeError("key is None")
 
 # Initalizing agent interface
-agent = LSDAgentInterface(
+remote_agent = LSDAgentInterface(
     mode="remote",
     model="deepseek/deepseek-r1:free",  # deepseek/deepseek-r1:free qwen/qwen3-235b-a22b:free
     sys_prompt=sys_prompt,
     key=key,
 )
+remote_agent.remote_call(query=user_prompt, contexts=contexts)
 
-agent.remote_call(query=user_prompt, contexts=contexts)
 
 response = requests.get(
     url="https://openrouter.ai/api/v1/auth/key",
     headers={"Authorization": f"Bearer {key}"},
 )
 
-local = LSDAgentInterface(mode="local", model="deepseek-r1:8b", sys_prompt=sys_prompt)
+local_agent = LSDAgentInterface(mode="local", model="deepseek-r1:8b", sys_prompt=sys_prompt)
+local_agent.local_call(query=user_prompt, contexts=contexts)
 
-local.local_call(query=user_prompt, contexts=contexts)
+
