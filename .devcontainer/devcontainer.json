@@ -1,0 +1,13 @@
+{
+  "name": "GraphDB Dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": "docker-compose up -d",
+  "forwardPorts": [7200],
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-azuretools.vscode-docker"]
+    }
+  }
+}
