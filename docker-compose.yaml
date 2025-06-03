@@ -5,6 +5,8 @@ services:
     image: ontotext/graphdb:latest
     ports:
       - "7200:7200"
+    environment:
+      - GRAPHDB_OPTS=-Dgraphdb.workbench.baseURL=http://0.0.0.0:7200/
     volumes:
       - graphdb-data:/opt/graphdb/home
     restart: always
