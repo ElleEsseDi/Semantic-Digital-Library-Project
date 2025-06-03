@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  graphdb:
+    image: ontotext/graphdb:latest
+    ports:
+      - "7200:7200"
+    volumes:
+      - graphdb-data:/opt/graphdb/home
+    restart: always
+
+volumes:
+  graphdb-data:
