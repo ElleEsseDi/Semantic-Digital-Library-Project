@@ -78,9 +78,9 @@ class LSDAgentInterface:
                 {"role": "user", "content": formatted_contexts}
             ],
             "max_tokens": 5000,
-            "temperature": 0.01,
-            "top_k": 50,
-            "top_p": 0.95,
+            "temperature": 0.7,
+            "top_k": 40,
+            "top_p": 0.8,
             "models": [
                 "deepseek/deepseek-r1:free",
                 "google/gemma-3-27b-it:free",
