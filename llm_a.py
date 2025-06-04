@@ -143,9 +143,9 @@ class LSDAgentInterface:
 
     def _format_context_info(self, contexts):
         return (
-            "--- BEGIN RETRIEVED CONTEXTS ---\n"
+            "--- BEGIN AVAILABLE INFORMATION ---\n"
             + "\n".join(contexts) if contexts else "***NO INFO***"
-            + "--- END RETRIEVED CONTEXTS ---"
+            + "--- END AVAILABLE INFORMATION ---"
         )
 
 
