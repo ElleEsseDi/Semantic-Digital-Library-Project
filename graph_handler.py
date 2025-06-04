@@ -54,6 +54,8 @@ class GraphHandler:
             print(response.text)
 
     def search_contexts(self, entities: list) -> list:
+        if not entities:
+            return []
         entity_contexts = self.make_query(entities)
         # prompt_contexts.extend(entity_contexts)
         return entity_contexts  # prompt_contexts

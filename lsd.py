@@ -62,8 +62,8 @@ def main():
 
     try:
         response = remote_agent.remote_call(query=user_prompt, contexts=contexts)
-    except requests.exceptions.HTTPError:
-        print("Failed to connect to the LLM service. Check your connection or try again later")
+    except requests.exceptions.HTTPError as e:
+        print(f"Failed to connect to the LLM service. \n{e}")
         return
 
     local_agent = LSDAgentInterface(mode="local", model="deepseek-r1:8b", sys_prompt=sys_prompt)

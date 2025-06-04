@@ -68,10 +68,12 @@ class LSDAgentInterface:
             raise AttributeError(
                 "Instance was not set to be used as a remote API interface"
             )
+        print("Contexts length ", len(contexts))
         formatted_contexts = self._format_context_info(contexts=contexts)
+        print("Post formatting: ", len(formatted_contexts))
 
         payload = {
-            "model": self.model,  # main model
+            "model": self.model,  #chosen model
             "messages": [
                 {"role": "system", "content": self.sys_prompt},
                 {"role": "user", "content": query},
@@ -85,7 +87,7 @@ class LSDAgentInterface:
                 "deepseek/deepseek-r1:free",
                 "google/gemma-3-27b-it:free",
                 "nvidia/llama-3.1-nemotron-ultra-253b-v1:free",
-            ],  # XXX: Fallback models
+            ],  # Fallback models
         }
 
         # adding settings, if specified, to payload
@@ -96,6 +98,7 @@ class LSDAgentInterface:
         response = requests.post(
             self.endpoint, headers=self.headers, data=json.dumps(payload)
         )
+        print(response.text)
         response.raise_for_status()
 
         api_response = response.json()
