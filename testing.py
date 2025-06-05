@@ -12,6 +12,10 @@ def run_test(user_prompt, test_id: str, log_path: str = "./"):
 
     graphdb_url = "http://localhost:7200"
     repostory_id = "SemDigLib"
+    path_file_triple = (
+        "data7.ttl"  # Usato da un oggetto GraphHandler per creare il grafo dalle triple
+    )
+    # utilizzando il metodo load_triples
 
     # Si riconoscono le entità contenute nella domanda
     try:
@@ -75,11 +79,10 @@ def run_test(user_prompt, test_id: str, log_path: str = "./"):
         return
 
     with open(os.path.join(log_path, "test_log.txt"), mode="a", encoding="utf-8") as f:
-        print(f"Logging TEST {test_id}")
-        highlighter_seq = "#" * 5
-        f.write("\n" * 3 + highlighter_seq + f"TEST {test_id }" + highlighter_seq)
+        highlighter_char = "#" * 5
+        f.write("\n" * 3 + highlighter_char + f"TEST {test_id }" + highlighter_char)
         f.write("\n" + query + "\n")
-        f.write("\n***Remote Answer***")
+        f.write("***Remote Answer***")
         f.write(response)
         f.write("\n***Local Answer***")
         f.write(local_response)
@@ -88,11 +91,12 @@ def run_test(user_prompt, test_id: str, log_path: str = "./"):
 if __name__ == "__main__":
 
     QUERIES = [
-        "Tell me about the stock-market crash happened in 2001",
-        "What were historical relations between japanese and portuguese?",
-        "What was the most brutal terrorist attack in the latest centurty?",
-        "Who is Osama Bin Laden? What was his nationality?",
-        "Tell me about japanese art",
+        "What are the Pacific Games and the Olympic games? Perform a comparative analysis of the two."
+        # "Tell me about the stock-market crash happened in 2001",
+        # "What were historical relations between japanese and portuguese?",
+        # "What was the most brutal terrorist attack in the latest centurty?",
+        # "Who is Osama Bin Laden? What was his nationality?",
+        # "Tell me about japanese art",
     ]
 
     for test_id, query in enumerate(QUERIES):
