@@ -91,7 +91,7 @@ class LSDAgentInterface:
                 {"role": "user", "content": formatted_query},
                 {"role": "user", "content": formatted_contexts},
             ],
-            "max_tokens": 5000,
+            "max_tokens": 10_000,
             "temperature": 0.3,
             "top_k": 40,
             "top_p": 0.8,
