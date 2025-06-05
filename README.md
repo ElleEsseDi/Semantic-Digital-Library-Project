@@ -1,6 +1,7 @@
 # Semantic-Digital-Library-Project
 
-Project for the Semantic Digital Libraries course | UNIBO | Digital Humanities and Digital Knowledge 
+Project for the Semantic Digital Libraries course | UNIBO | Digital Humanities and Digital Knowledge
+
 Visit the GitBook with our documentation: https://kr-and-e-2023-4-controversy-abou.gitbook.io/library-system-dude-kg-and-llm-for-libraries/
 
 # Requirements
