@@ -21,11 +21,22 @@ The code entry point is the lsd.py file. To run it correctly:
 
 * run the following terminal command to instantiate a graphdb instance (**Docker required**):
 
-    > docker pull ontotext/graphdb:11.0.1 &&
-    > docker run -d --name graphdb \
-    > -p 7200:7200 \
-    > ontotext/graphdb:11.0.1 &&
-    > open http://localhost:7200
+    Unix / macOS
+    <pre><code>
+        docker pull ontotext/graphdb:11.0.1 &amp;&amp; \ 
+        docker run -d --name graphdb \ 
+        -p 7200:7200 \ 
+        ontotext/graphdb:11.0.1 &amp;&amp; 
+        \ open http://localhost:7200 </code></pre>
+
+    Windows CMD
+    <pre><code>
+        docker pull ontotext/graphdb:11.0.1 &amp;&amp; ^ 
+        docker run -d --name graphdb ^
+        -p 7200:7200 ^ 
+        ontotext/graphdb:11.0.1 &amp;&amp; ^ 
+        start http://localhost:7200 
+    </code></pre>
 
 * from the GrapDB GUI, import *dataFinal.ttl* in the import menu; then go to 'Setup' and create a new repo. Ensure it is up and running.
 
