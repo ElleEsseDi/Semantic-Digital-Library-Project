@@ -1,6 +1,7 @@
 # Semantic-Digital-Library-Project
 
 Project for the Semantic Digital Libraries course | UNIBO | Digital Humanities and Digital Knowledge 
+Visit the GitBook with our documentation: https://kr-and-e-2023-4-controversy-abou.gitbook.io/library-system-dude-kg-and-llm-for-libraries/
 
 # Requirements
 
@@ -20,11 +21,11 @@ The code entry point is the lsd.py file. To run it correctly:
 
 * run the following terminal command to instantiate a graphdb instance (**Docker required**):
 
-    docker pull ontotext/graphdb:11.0.1 &&
-    docker run -d --name graphdb \
-    -p 7200:7200 \
-    ontotext/graphdb:11.0.1 &&
-    open http://localhost:7200
+    > docker pull ontotext/graphdb:11.0.1 &&
+    > docker run -d --name graphdb \
+    > -p 7200:7200 \
+    > ontotext/graphdb:11.0.1 &&
+    > open http://localhost:7200
 
 * from the GrapDB GUI, import *dataFinal.ttl* in the import menu; then go to 'Setup' and create a new repo. Ensure it is up and running.
 
@@ -37,11 +38,3 @@ The code entry point is the lsd.py file. To run it correctly:
     * pull your model of choice from Ollama: ´ollama pull model-name´
 
 
-<<<<<<< HEAD
-File da caricare su GraphDB:
-SDLOntology su named graph (context: 	https://github.com/ElleEsseDi/Semantic-Digital-Library-Project/model)
-dataFinal su default graph
-
-Visit the GitBook with our documentation: https://kr-and-e-2023-4-controversy-abou.gitbook.io/library-system-dude-kg-and-llm-for-libraries/
-=======
->>>>>>> 6a09d10 (instructions in readme and updated reqs)
