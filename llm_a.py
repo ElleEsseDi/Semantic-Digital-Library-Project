@@ -68,26 +68,34 @@ class LSDAgentInterface:
             raise AttributeError(
                 "Instance was not set to be used as a remote API interface"
             )
-        print("Contexts length ", len(contexts))
-        formatted_contexts = self._format_context_info(contexts=contexts)
-        print("Post formatting: ", len(formatted_contexts))
+
+        # Fallback models
+        fallback_models = {
+            "qwen/qwen3-235b-a22b:free",
+            "deepseek/deepseek-r1:free",
+            "google/gemma-3-27b-it:free",
+            "nvidia/llama-3.1-nemotron-ultra-253b-v1:free",
+        }
+
+        if self.model in fallback_models:
+            fallback_models.remove(self.model)
+
+        formatted_query, formatted_contexts = self._format_data(
+            query=query, contexts=contexts
+        )
 
         payload = {
-            "model": self.model,  #chosen model
+            "model": self.model,  # chosen model
             "messages": [
                 {"role": "system", "content": self.sys_prompt},
-                {"role": "user", "content": query},
-                {"role": "user", "content": formatted_contexts}
+                {"role": "user", "content": formatted_query},
+                {"role": "user", "content": formatted_contexts},
             ],
             "max_tokens": 5000,
-            "temperature": 0.7,
+            "temperature": 0.3,
             "top_k": 40,
             "top_p": 0.8,
-            "models": [
-                "deepseek/deepseek-r1:free",
-                "google/gemma-3-27b-it:free",
-                "nvidia/llama-3.1-nemotron-ultra-253b-v1:free",
-            ],  # Fallback models
+            "models": list(fallback_models),
         }
 
         # adding settings, if specified, to payload
@@ -125,12 +133,12 @@ class LSDAgentInterface:
                 "Instance was not set to be used in as a local API interface"
             )
 
-        formatted_contexts = self._format_context_info(contexts)
+        formatted_query, formatted_contexts = self._format_data(query, contexts)
         response = self.client.chat(
             model=self.model,
             messages=[
                 {"role": "system", "content": self.sys_prompt},
-                {"role": "user", "content": query},
+                {"role": "user", "content": formatted_query},
                 {"role": "user", "content": formatted_contexts},
             ],
             options=self.settings,
@@ -144,12 +152,15 @@ class LSDAgentInterface:
 
         return response_text
 
-    def _format_context_info(self, contexts):
-        return (
-            "--- BEGIN AVAILABLE INFORMATION ---\n"
-            + "\n".join(contexts) if contexts else "***NO INFO***"
-            + "--- END AVAILABLE INFORMATION ---"
+    def _format_data(self, query, contexts) -> tuple:
+        f_contexts = (
+            "<AVAILABLE INFORMATION>" + "\n".join(contexts)
+            if contexts
+            else "***NO INFO***" + "</AVAILABLE INFORMATION>"
         )
+        f_query = "<USER QUERY>" + query + "</USER QUERY>"
+
+        return f_query, f_contexts
 
 
 if __name__ == "__main__":

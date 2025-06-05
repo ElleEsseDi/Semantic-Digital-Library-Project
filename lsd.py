@@ -13,14 +13,12 @@ def main():
     # Prima di mandare la richiesta ricorda di attivare il database
     graphdb_url = "http://localhost:7200"
     repostory_id = "SemDigLib"
-    path_file_triple = (
-        "data7.ttl"  # Usato da un oggetto GraphHandler per creare il grafo dalle triple
-    )
+
     # utilizzando il metodo load_triples
 
     # L'utente fa la sua domanda
-    user_prompt = input("Whadda lookin foa?\n")
-    print("Lemme cooke broda...")
+    user_prompt = input("Hi! What are interested in?")
+    print("Just a moment...")
 
     # Si riconoscono le entità contenute nella domanda
     try:
@@ -63,7 +61,7 @@ def main():
     try:
         response = remote_agent.remote_call(query=user_prompt, contexts=contexts)
     except requests.exceptions.HTTPError as e:
-        print(f"Failed to connect to the LLM service. \n{e}")
+        print(f"Failed to connect to the LLM service. \n{type(e)}: {e}.")
         return
 
     local_agent = LSDAgentInterface(mode="local", model="deepseek-r1:8b", sys_prompt=sys_prompt)

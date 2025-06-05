@@ -1,0 +1,111 @@
+#####TEST 0#####
+Tell me about the stock-market crash happened in 2001
+
+***Remote Answer***
+I do not have any information available about a stock market crash specifically occurring in 2001. My knowledge on this topic is limited to the data provided, and there is no context available to address this query. If you have further details or a different question, feel free to ask!
+
+***Local Answer***
+The stock market crash that occurred in 2001 was primarily influenced by the events of September 11, 2001. This incident led to a significant decline in global stock markets, with the Dow Jones Industrial Average experiencing a substantial drop, losing over 500 points in one day. Investors panicked due to fear and uncertainty, causing widespread sell-offs not only in U.S. markets but also affecting other international exchanges. This crash underscores the profound impact that terrorist attacks can have on financial markets and investor confidence.
+
+
+#####TEST 1#####
+
+What were historical relations between japanese and portuguese?
+
+***Remote Answer***
+Based on the provided information, there is no direct mention of historical relations between Japan and Portugal. The available contexts detail numerous events in Japanese and Portuguese history separately—such as Japanese military conflicts, political elections, cultural developments, and Portuguese colonial engagements, including conflicts with other European powers and events in Macau. However, there is no specific information addressing bilateral interactions, treaties, or conflicts between Japan and Portugal within the provided data. 
+
+Key points from the contexts that indirectly relate to each country's international engagements but not to each other include:
+- **Japan's treaties and conflicts** (e.g., Franco-Japanese Treaty of 1907, Japan-Korea Treaty of 1905, Soviet-Japanese border clashes).
+- **Portuguese colonial history** (e.g., Dutch-Portuguese War, Ottoman-Portuguese conflicts, the 12-3 incident in Macau).
+- **Portuguese exploration** (e.g., Vasco da Gama's sea route to India).
+
+No contexts explicitly describe diplomatic, economic, or cultural exchanges between Japan and Portugal. Therefore, **the available information does not provide details on historical relations between the two nations**.
+
+
+***Local Answer***
+The historical events and political movements in Portugal reflect the nation's journey through discovery, revolution, and transformation. Here's a structured overview:
+
+1. **Vasco da Gama's Discovery (1498):** Vasco da Gama's successful voyage around Africa to India established Portugal as a dominant force in global trade, particularly in spices. This discovery marked the beginning of Portugal's maritime dominance and economic influence.
+
+2. **Carnation Revolution (1974):** A peaceful revolution ended Portugal's authoritarian regime under Marcelo Caetano. It led to the formation of a transitional government, with Vasco dos Santos as its leader, paving the way for democracy and the rise of socialist reforms influenced by the Portuguese Communist Party (PCP).
+
+3. **Constituent Assembly Election (1975):** This pivotal election established Portugal's democratic institutions, setting the foundation for its modern political structure. Prominent figures like Mário Soares and Álvaro Cunhal played crucial roles in shaping this new constitutional framework.
+
+4. **German Campaign in Angola (1916):** During World War I, Germany occupied Portuguese colonies, highlighting the impact of colonial conflicts on Portugal's sovereignty and eventually leading to decolonization post-war.
+
+5. **Political Parties in 1987 Elections:** The Social Democrat Party (PSD) dominated Portuguese politics, with Aníbal Cavaco Silva as Prime Minister. The lack of debates between main parties underscores a dominant political landscape.
+
+6. **Historical Legislative Elections (1851, 1878):** These elections were significant in shaping Portugal's political trajectory, though exact details and their impact require further exploration into specific historical contexts.
+
+In summary, these events underscore Portugal's evolution from a colonial power to a democratic nation, influenced by discoveries, revolutions, and global conflicts. Each milestone contributes to understanding Portugal's development over centuries.
+
+
+#####TEST 2#####
+What was the most brutal terrorist attack in the latest centurty?
+
+***Remote Answer***
+Based on the provided information, I do not have access to any data about terrorist attacks or related historical events to answer your query. The available information explicitly states ***NO INFO*** on this topic.
+
+***Local Answer***
+The information provided does not contain any details about the most brutal terrorist attacks in the latest century. Therefore, I cannot provide a definitive answer based on the available context.
+
+Answer: I don't have enough information to determine the most brutal terrorist attack of the latest century.
+
+
+#####TEST 3#####
+Who is Osama Bin Laden? What was his nationality?
+***Remote Answer***
+I do not have any information about Osama Bin Laden or his nationality in the provided knowledge sources.
+
+***Local Answer***
+Osama Bin Laden was a founder of the terrorist organization al-Qaeda and was associated with various extremist activities. He was born in Saudi Arabia, but there is some uncertainty regarding his nationality. While it's commonly stated that he was a Saudi national, there are also reports suggesting Yemeni descent, leading to conflicting information about his nationality. Therefore, it's accurate to note that he was born in Saudi Arabia, though his nationality remains uncertain due to these discrepancies.
+
+
+#####TEST 4#####
+Tell me about japanese art
+***Remote Answer*** 
+Japanese art encompasses diverse styles and historical influences. A key development emerged during the Meiji period (1868–1912) with the introduction of *Yōga* (Western-style painting), formalized through institutions like the Kobu Bijutsu Gakkō (1876). While *Yōga* initially declined due to a resurgence of traditional *Nihonga* (Japanese-style painting), it regained prominence after 1896. Notably, *Nihonga* itself integrated Western techniques like perspective and shading, blurring the distinction between the two styles.  
+
+In the 19th century, *japonism*—the Western fascination with Japanese art—profoundly influenced European artists, particularly through *ukiyo-e* prints, following Japan’s reopening to trade in 1858.  
+
+Contemporary Japanese art is exemplified by figures like Takashi Murakami, whose 2012 exhibition *Murakami-Ego* in Qatar showcased his fusion of traditional motifs with pop culture, reflecting modern artistic innovation.  
+
+**Limitations:** The provided information does not address other facets of Japanese art (e.g., sculpture, ceramics, pre-Meiji traditions). Further details on specific movements, artists, or cultural contexts would require additional sources.
+
+
+***Local Answer***
+The list of historical events related to Japan provides a comprehensive overview of the country's rich and complex history, spanning from ancient times to more recent post-war developments. Here is a structured and organized presentation of these events, arranged chronologically:
+
+1. **Battle of Danghangpo (Unknown - 13th Century)**: A naval engagement during the Japanese invasions of Korea, resulting in a Korean victory.
+
+2. **Minamoto no Yoshitsune (12th Century)**: A prominent samurai who became an Ashikaga retainer after being exiled but later returned to aid the shogunate against their enemies.
+
+3. **Ashikaga Shogunate (1185-1571)**: The rise of the Ashikaga family as shoguns, leading to significant political and military changes in Japan.
+
+4. **Yakusho (active 17th century)**: A Japanese painter known for ink wash landscapes, reflecting the cultural vibrancy during the Edo period.
+
+5. **Japan-Korea Annexation Treaty (1904)**: Japan annexed Korea under this treaty, leading to increased tensions and eventual global conflict.
+
+6. **Surrender in WWII (August 14, 1945)**: Emperor Hirohito's announcement of surrender, ending World War II and leading to occupation by Allied forces.
+
+7. **Constitution of Japan (May 3, 1947)**: Post-WWII document influenced by the American model, redefining the role of the Emperor and emphasizing human rights.
+
+8. **Return of Okinawa (1956)**: Okinawa was returned to Japanese control after being administered by U.S. military forces since WWII.
+
+9. **Joint Declaration with Soviet Union (1956)**: Transfer of Habomai Islands and Shikotan to Japan, still a point of contention today.
+
+10. **House of Councillors Elections (1953)**: A step in Japan's post-war political restructuring, reflecting the shift towards democratic governance.
+
+11. **Battle of Nanchang (1938)**: A significant WWII battle where Chinese forces resisted Japanese invasions, highlighting the war's impact on China.
+
+12. **General Elections**: 
+    - 1890, 1892, 1953, 1993, and 2010 reflect Japan's evolving political landscape, adapting to internal and external pressures over time.
+
+13. **Japonism (Late 19th-Early 20th Century)**: A cultural movement where Western art was influenced by Japanese aesthetics, post-Meiji Restoration.
+
+14. **Minori (Modern Era)**: A visual novel company contributing to Japan's modern media culture and international influence.
+
+This timeline illustrates the historical trajectory of Japan, from ancient governance through periods of military conflict, political transformation, and cultural exchange, highlighting its role in shaping modern global dynamics.
+
+
