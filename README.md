@@ -8,7 +8,7 @@ Visit the GitBook with our documentation: https://kr-and-e-2023-4-controversy-ab
 
 To run the code, these are some requirements:
 
-* Docker installed on your machine.
+* Docker installed on your machine for quick GraphDB setuo.
 
 * Have an [OpenRouter](https://openrouter.ai/) API key (a free tier is available, without having to submit a payment method) for remote LLM calls.
 
@@ -35,6 +35,7 @@ The code entry point is the lsd.py file. To run it correctly:
         -p 7200:7200 ^ 
         ontotext/graphdb:11.0.1 &amp;&amp; ^ 
         start http://localhost:7200 </code></pre>
+
 
 * from the GrapDB GUI, import *dataFinal.ttl* in the import menu; then go to 'Setup' and create a new repo. Ensure it is up and running.
 
