@@ -2,6 +2,8 @@
 
 Project for the Semantic Digital Libraries course | UNIBO | Digital Humanities and Digital Knowledge
 
+It is a proof concept for a GraphRAG system, leveraging linkable entities to perform SPARQL queries on a graph database based on RDF.
+
 Visit the GitBook with our documentation: https://kr-and-e-2023-4-controversy-abou.gitbook.io/library-system-dude-kg-and-llm-for-libraries/
 
 # Requirements
@@ -37,7 +39,7 @@ The code entry point is the lsd.py file. To run it correctly:
         start http://localhost:7200 </code></pre>
 
 
-* from the GrapDB GUI, import *dataFinal.ttl* in the import menu; then go to 'Setup' and create a new repo. Ensure it is up and running.
+* from the GraphDB GUI, import *dataFinal.ttl* in the import menu; then go to 'Setup' and create a new repo. Ensure it is up and running.
 
 * if you intend to use an API key: 
     + create a .env file in the same directory;
